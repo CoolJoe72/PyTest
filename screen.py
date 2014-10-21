@@ -8,22 +8,25 @@ Copyright (c) 2014 Gray Squared. All rights reserved.
 """
 
 import sys, os
-from time import sleep
-import pygame
-import RPi.GPIO as GPIO
-
-change = 22
-end = 18
-blue = 23
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(blue,GPIO.OUT, initial=GPIO.LOW)
-GPIO.setup(change,GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(end,GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
+#from time import sleep
+#import pygame
+from platform import system, machine
+if (system() == 'Linux' and machine() == 'armv6l'):
+	import RPi.GPIO as GPIO
+	
+	change = 22
+	end = 18
+	blue = 23
+	GPIO.setmode(GPIO.BOARD)
+	GPIO.setup(blue,GPIO.OUT, initial=GPIO.LOW)
+	GPIO.setup(change,GPIO.IN, pull_up_down=GPIO.PUD_UP)
+	GPIO.setup(end,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 def main():
-	pass
+	person = input('Enter your name: ')
+	print('Hello', person)
+
 
 def cleanup():
 	pygame.quit()
