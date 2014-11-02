@@ -10,16 +10,14 @@ red = 21
 green = 19
 bgreen = 15
 bwhite = 13
-led = (blue, red, green, bgreen, bwhite)
+leds = (blue, red, green, bgreen, bwhite)
 end = 18
 i = 0
 
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(blue, GPIO.OUT)
-GPIO.setup(red, GPIO.OUT)
-GPIO.setup(green, GPIO.OUT)
-GPIO.setup(bgreen, GPIO.OUT)
-GPIO.setup(bwhite, GPIO.OUT)
+for pin in leds:
+	GPIO.setup(pin, GPIO.OUT)
+
 GPIO.setup(end, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def main():
@@ -27,9 +25,9 @@ def main():
 	while True:
 		if not (GPIO.input(end)):
 			cleanup()
-		ledon(led[i])
+		ledon(leds[i])
 		sleep(.5)
-		ledoff(led[i])
+		ledoff(leds[i])
 		sleep(.5)
 		i += 1
 
