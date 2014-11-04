@@ -30,9 +30,9 @@ def main():
 			change_led()
 		if not (GPIO.input(end)):
 			cleanup()
-		ledon(led[i])
+		ledon(leds[i])
 		sleep(.25)
-		ledoff(led[i])
+		ledoff(leds[i])
 		sleep(.25)
 
 def ledon(pin):
@@ -45,7 +45,7 @@ def change_led():
 	global i
 	print "Change button was pushed"
 	i=i+1
-	if i == len(led):
+	if i == len(leds):
 		i = 0
 	print "Color is now" , ledn[i] 
 
